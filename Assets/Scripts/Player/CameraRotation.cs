@@ -4,32 +4,27 @@ using UnityEngine.InputSystem;
 public class CameraRotation : MonoBehaviour
 {
 
-    public GameObject player;
+    [SerializeField] private Camera _camera;
     private Vector2 _mouseMovement;
     private float _xRotation, _yRotation;
-    private const float MouseSensitivity = 40;
+    private const float MouseSensitivity = 0.2f;
+
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        var pos = player.transform.position;
-
-        transform.position = pos;
-
-        _mouseMovement = Mouse.current.delta.ReadValue();
-
-        _xRotation -= _mouseMovement.y * Time.deltaTime * MouseSensitivity;
+        var mouseX = Mouse.current.delta.x.ReadValue();
+        var mouseY = Mouse.current.delta.y.ReadValue();
+        _yRotation += mouseX * MouseSensitivity;
+        _xRotation -= mouseY * MouseSensitivity;
         _xRotation = Mathf.Clamp(_xRotation, -90, 90);
-
-        _yRotation += _mouseMovement.x * Time.deltaTime * MouseSensitivity;
-        
-        transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
-        player.transform.rotation = Quaternion.Euler(0, _yRotation, 0);
+        transform.localRotation = Quaternion.Euler(0, _yRotation, 0);
+        _camera.transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
     }
 }

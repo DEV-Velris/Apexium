@@ -306,7 +306,6 @@ GameObject:
   - component: {fileID: 715630864}
   - component: {fileID: 715630863}
   - component: {fileID: 715630862}
-  - component: {fileID: 715630865}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -380,19 +379,6 @@ Transform:
   m_Father: {fileID: 1738948803}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &715630865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 715630861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f959c4be59d750428329dead2694aea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1738948798}
 --- !u!1 &1738948798
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +392,9 @@ GameObject:
   - component: {fileID: 1738948801}
   - component: {fileID: 1738948800}
   - component: {fileID: 1738948799}
+  - component: {fileID: 1738948804}
+  - component: {fileID: 1738948805}
+  - component: {fileID: 1738948806}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -421,7 +410,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738948798}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 70
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -509,3 +498,82 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1738948804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738948798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f92aee7dea0e760469af7e0d3ae4b17f, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14656b3c-fa81-4839-b75f-ae09c87d7f39
+    m_ActionName: Ingame/Movements[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 517d24d4-5702-4205-8d0d-b15df3fa8d0b
+    m_ActionName: Ingame/Sprint[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 286f16bf-ba92-4cfa-b599-5007f6a3da82
+    m_ActionName: Ingame/Slide[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9b2cb4f0-b2f2-4b02-bcaa-223470eedda5
+    m_ActionName: Ingame/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 202f0b13-abb0-4532-91d6-b29fcd45e2dc
+    m_ActionName: Ingame/Tirer[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 103f33ad-c168-4d51-b56d-a19d9d85f055
+    m_ActionName: Ingame/Recharger[/Keyboard/r]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Ingame
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1738948805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738948798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10e308ecf62ffb4dbd6cb5995e93762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1738948806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738948798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f959c4be59d750428329dead2694aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 715630863}
