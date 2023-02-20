@@ -1,30 +1,51 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CameraRotation : MonoBehaviour
 {
 
-    [SerializeField] private Camera _camera;
-    private Vector2 _mouseMovement;
-    private float _xRotation, _yRotation;
-    private const float MouseSensitivity = 0.2f;
+    private Controls _controls;
+    private const float MouseSensitivity = 50;
+    private Vector2 _mouseLook;
+    private float _xRotation;
+    private Transform _playerbody;
 
-
-    // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
+        _playerbody = transform.parent;
+
+        _controls = new Controls();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     private void Update()
     {
-        var mouseX = Mouse.current.delta.x.ReadValue();
-        var mouseY = Mouse.current.delta.y.ReadValue();
-        _yRotation += mouseX * MouseSensitivity;
-        _xRotation -= mouseY * MouseSensitivity;
+        Look();
+    }
+
+    private void Look()
+    {
+        _mouseLook = _controls.Ingame.Look.ReadValue<Vector2>();
+
+        var mouseX = _mouseLook.x * MouseSensitivity * Time.deltaTime;
+        var mouseY = _mouseLook.y * MouseSensitivity * Time.deltaTime;
+
+        _xRotation -= mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -90, 90);
-        transform.localRotation = Quaternion.Euler(0, _yRotation, 0);
-        _camera.transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
+        
+        transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
+        _playerbody.Rotate(Vector3.up * mouseX);
+
+    }
+
+    private void OnEnable()
+    {
+        _controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _controls.Disable();
     }
 }

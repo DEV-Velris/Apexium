@@ -80,6 +80,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""44211c7e-2254-46c7-8400-c6da29b639eb"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Recharger"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6538c81a-f428-44b7-aaca-4f4efe3f9971"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +226,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Ingame_Jump = m_Ingame.FindAction("Jump", throwIfNotFound: true);
         m_Ingame_Tirer = m_Ingame.FindAction("Tirer", throwIfNotFound: true);
         m_Ingame_Recharger = m_Ingame.FindAction("Recharger", throwIfNotFound: true);
+        m_Ingame_Look = m_Ingame.FindAction("Look", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +294,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ingame_Jump;
     private readonly InputAction m_Ingame_Tirer;
     private readonly InputAction m_Ingame_Recharger;
+    private readonly InputAction m_Ingame_Look;
     public struct IngameActions
     {
         private @Controls m_Wrapper;
@@ -283,6 +305,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Ingame_Jump;
         public InputAction @Tirer => m_Wrapper.m_Ingame_Tirer;
         public InputAction @Recharger => m_Wrapper.m_Ingame_Recharger;
+        public InputAction @Look => m_Wrapper.m_Ingame_Look;
         public InputActionMap Get() { return m_Wrapper.m_Ingame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -310,6 +333,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Recharger.started += instance.OnRecharger;
             @Recharger.performed += instance.OnRecharger;
             @Recharger.canceled += instance.OnRecharger;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
         }
 
         private void UnregisterCallbacks(IIngameActions instance)
@@ -332,6 +358,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Recharger.started -= instance.OnRecharger;
             @Recharger.performed -= instance.OnRecharger;
             @Recharger.canceled -= instance.OnRecharger;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
         }
 
         public void RemoveCallbacks(IIngameActions instance)
@@ -357,5 +386,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnTirer(InputAction.CallbackContext context);
         void OnRecharger(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
     }
 }
