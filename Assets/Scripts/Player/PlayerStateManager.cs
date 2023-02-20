@@ -26,6 +26,7 @@ public class  PlayerStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
+        currentState.OnCollisionEnter(this);
     }
 
     public void SwitchState(PlayerBaseState state)
