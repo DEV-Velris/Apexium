@@ -29,6 +29,6 @@ public class CameraRotation : MonoBehaviour
         _yRotation += _mousemovement.x * rotationSpeed;
         
         transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
-        player.transform.rotation = Quaternion.Euler(0, _yRotation, 0);
+        // player.transform.rotation = Quaternion.Euler(0, _yRotation, 0);
     }
 }
